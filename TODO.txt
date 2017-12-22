@@ -1,0 +1,12 @@
+All of "Deployment" Section
+=============================
+Some of "Config" Section
+=============================
+Some of Jinja Templates" Section
+
+Finally, let's update the code on AWS.
+1. eval $(docker-machine env testdriven-prod)
+2. docker-compose -f docker-compose-prod.yml up -d --build
+3. Test:
+http://DOCKER_MACHINE_PROD_IP
+http://DOCKER_MACHINE_PROD_IP/users
