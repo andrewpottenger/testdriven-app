@@ -1,8 +1,10 @@
 __pycache__
 env
 htmlcov
+.DS_Store
 .idea
-client/.idea
-node_modules
-client/src/components/__snapshots__
+services/client/.idea
+services/client/build
+services/client/node_modules
+services/client/src/components/__snapshots__
 TODO.txt
