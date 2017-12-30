@@ -11,7 +11,7 @@ COV = coverage.coverage(
     branch=True,
     include='project/*',
     omit=[
-    '   project/tests/*'
+        'project/tests/*'
     ]
 )
 COV.start()
