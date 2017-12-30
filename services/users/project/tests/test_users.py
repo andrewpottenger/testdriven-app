@@ -152,15 +152,16 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 '/',
-                data=dict(username='michael', email='michael@realpython.com', password='testpassword'),
+                data=dict(
+                    username='michael',
+                    email='michael@realpython.com',
+                    password='testpassword'),
                 follow_redirects=True
             )
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'<h1>All Users</h1>', response.data)
         self.assertNotIn(b'<p>No users!</p>', response.data)
         self.assertIn(b'michael', response.data)
-
-
 
     def test_add_user_invalid_json_keys_no_password(self):
         """
@@ -171,14 +172,15 @@ class TestUserService(BaseTestCase):
             response = self.client.post(
                 '/users',
                 data=json.dumps(dict(
-                username='michael',
-                email='michael@realpython.com')),
+                    username='michael',
+                    email='michael@realpython.com')),
                 content_type='application/json',
             )
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 400)
             self.assertIn('Invalid payload.', data['message'])
             self.assertIn('fail', data['status'])
+
 
 if __name__ == '__main__':
     unittest.main()
