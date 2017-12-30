@@ -32,7 +32,11 @@ def create_app():
     migrate.init_app(app, db)
 
     # register blueprints
+    # /users
     from project.api.users import users_blueprint
     app.register_blueprint(users_blueprint)
+    # /auth
+    from project.api.auth import auth_blueprint
+    app.register_blueprint(auth_blueprint)
 
     return app
