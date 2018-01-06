@@ -4,7 +4,7 @@ services:
 
   users-service:
     container_name: users-service
-    build: 
+    build:
       context: ./services/users
       dockerfile: Dockerfile-prod
     expose:
