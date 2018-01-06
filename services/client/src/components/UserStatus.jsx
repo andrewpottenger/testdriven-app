@@ -32,6 +32,7 @@ class UserStatus extends Component {
                 id: res.data.data.id,
                 username: res.data.data.username
             })
+            console.log(res.data.data);
         })
         .catch((error) => { console.log(error); });
     };

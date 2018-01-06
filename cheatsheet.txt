@@ -2,23 +2,31 @@
 # build image and run container in background
 docker-compose -f docker-compose-dev.yml up -d --build
 
-# Run the tests:
+### Docker ###
+docker-machine ls
+
+### Testing ###
+
+# Run Python Tests # alias testPython
 docker-compose -f docker-compose-dev.yml \
 run users-service python manage.py test
 
-# Docker
-docker-machine ls
-
-# Client
-
-# Run Client React tests with npm
-docker-compose -f docker-compose-dev.yml \
-run client npm test
-
-# Run Test Coverage for Python
+# Run Python Test Coverage # alias testPythonCoverage
 docker-compose -f docker-compose-dev.yml \
 run users-service python manage.py cov
 
+# Run Python Style Guide Linting # alias testPythonLinting
+docker-compose -f docker-compose-dev.yml \
+run users-service flake8 project
+
+# Run React Tests # alias testReact
+docker-compose -f docker-compose-dev.yml \
+run client npm test -- --verbose
+
+# Run all Tests #
+docker-compose -f docker-compose-dev.yml run client npm test -- --verbose && docker-compose -f docker-compose-dev.yml run users-service python manage.py test  && docker-compose -f docker-compose-dev.yml run users-service python manage.py cov  && docker-compose -f docker-compose-dev.yml run users-service flake8 project
+
+# React Component Creation Steps #
 For each component, we'll roughly follow these steps:
 1. Write a unit test
 2. Run the test to ensure it fails
