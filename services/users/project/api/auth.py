@@ -100,4 +100,3 @@ def get_user_status(resp):
         'data': user.to_json()
     }
     return jsonify(response_object), 200
-

@@ -220,7 +220,7 @@ class TestUserService(BaseTestCase):
             response = self.client.post(
                 '/users',
                 data=json.dumps({
-                    'username':'michael',
+                    'username': 'michael',
                     'email': 'michael@realpython.com',
                 }),
                 content_type='application/json',
