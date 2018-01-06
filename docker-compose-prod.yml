@@ -4,7 +4,7 @@ services:
 
   users-service:
     container_name: users-service
-    build:
+    build: 
       context: ./services/users
       dockerfile: Dockerfile-prod
     expose:
@@ -13,10 +13,12 @@ services:
       - APP_SETTINGS=project.config.ProductionConfig
       - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users_prod
       - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/users_test
+      - SECRET_KEY=${SECRET_KEY}
     depends_on:
       - users-db
     links:
       - users-db
+    command: gunicorn -b 0.0.0.0:5000 manage:app
 
   users-db:
     container_name: users-db
