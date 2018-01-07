@@ -3,6 +3,7 @@ env
 htmlcov
 .DS_Store
 .idea
+node_modules
 services/client/.idea
 services/client/build
 services/client/node_modules
