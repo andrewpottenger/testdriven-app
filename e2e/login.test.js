@@ -34,7 +34,9 @@ test(`should allow a user to sign in`, async (t) => {
         .navigateTo(`${TEST_URL}/login`)
         .typeText('input[name="email"]', email)
         .typeText('input[name="password"]', 'test')
+        .wait( 1000 )
         .click(Selector('input[type="submit"]'))
+        .wait( 3000 )
 
     // assert user is redirected to '/'
     // assert '/' is displayed properly

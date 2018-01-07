@@ -7,31 +7,30 @@ import Form from '../Form';
 
 const testData = [
     {
-        formType: 'Register',
+        formType: 'register',
         formData: {
             username: '',
             email: '',
             password: ''
         },
-        handleUserFormSubmit: jest.fn(),
-        handleFormChange: jest.fn(),
         isAuthenticated: false,
+        loginUser: jest.fn(),
     },
     {
-        formType: 'Login',
+        formType: 'login',
         formData: {
             email: '',
             password: ''
         },
-        handleUserFormSubmit: jest.fn(),
-        handleFormChange: jest.fn(),
         isAuthenticated: false,
+        loginUser: jest.fn(),
     }
 ]
 
 describe('When not authenticated', () => {
     testData.forEach((el) => {
         const component = <Form {...el} />;
+
         it(`${el.formType} Form renders properly`, () => {
             const wrapper = shallow(component);
             const h1 = wrapper.find('h1');
@@ -42,17 +41,24 @@ describe('When not authenticated', () => {
             expect(formGroup.get(0).props.children.props.name).toBe(Object.keys(el.formData)[0]);
             expect(formGroup.get(0).props.children.props.value).toBe('');
         });
+
         it(`${el.formType} Form submits the form properly`, () => {
             const wrapper = shallow(component);
+            wrapper.instance().handleUserFormSubmit = jest.fn();
+            // This is shorthand for wrapper.instance().forceUpdate() , and
+            // it is used to re-render the component, adding the mocked method
+            // ( handleUserFormSubmit ) to the form instance. Without it,
+            // the actual, non-mocked method would have been called.
+            wrapper.update();
             const input = wrapper.find('input[type="email"]');
-            expect(el.handleUserFormSubmit).toHaveBeenCalledTimes(0);
-            expect(el.handleFormChange).toHaveBeenCalledTimes(0);
-            input.simulate('change')
-            expect(el.handleFormChange).toHaveBeenCalledTimes(1);
+            expect(wrapper.instance().handleUserFormSubmit).toHaveBeenCalledTimes(0);
+            input.simulate(
+                'change', { target: { name: 'email', value: 'test@test.com'} })
             wrapper.find('form').simulate('submit', el.formData)
-            expect(el.handleUserFormSubmit).toHaveBeenCalledWith(el.formData);
-            expect(el.handleUserFormSubmit).toHaveBeenCalledTimes(1);
+            expect(wrapper.instance().handleUserFormSubmit).toHaveBeenCalledWith(el.formData);
+            expect(wrapper.instance().handleUserFormSubmit).toHaveBeenCalledTimes(1);
         });
+
         it(`${el.formType} Form renders a snapshot properly`, () => {
             const tree = renderer.create(component).toJSON();
             expect(tree).toMatchSnapshot();
@@ -67,6 +73,7 @@ describe('When authenticated', () => {
             formData={el.formData}
             isAuthenticated={true}
         />;
+
         it(`${el.formType} redirects properly`, () => {
             const wrapper = shallow(component);
             expect(wrapper.find('Redirect')).toHaveLength(1);

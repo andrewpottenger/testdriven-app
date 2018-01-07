@@ -41,38 +41,3 @@ test(`should display the page correctly if a user is not logged in`, async (t) =
         .expect(Selector('a').withText('Register').exists).ok()
         .expect(Selector('a').withText('Log In').exists).ok()
 });
-
-test('Navigate to the About page', async t => {
-    await t
-        .click('.navbar-nav li:nth-child(2n) a')
-        .expect(Selector('H1').withText('About').exists).ok()
-});
-
-test('Verify Login form submit', async t => {
-    await t
-        .click('.navbar-right li:nth-child(2n) a')
-        .typeText(Selector('input[type=email]'), 'michael@mherman.org')
-        .typeText(Selector('input[type=password]'), 'test')
-        .click(Selector('input[type=submit]'))
-        .expect(Selector('.navbar-right li:nth-child(1n) a').withText('Log Out').exists).ok()
-});
-
-test('Verify a successful Logout', async t => {
-    await t
-        .click('.navbar-right li:nth-child(2n) a')
-        .typeText(Selector('input[type=email]'), 'michael@mherman.org')
-        .typeText(Selector('input[type=password]'), 'test')
-        .click(Selector('input[type=submit]'))
-        .click(Selector('.navbar-right li:nth-child(1n) a'))
-        .expect(Selector('.col-md-6 p').withText('You are now logged out. Click here to log back in.')).ok()
-});
-
-test('Verify User Status Login information', async t => {
-    await t
-        .click('.navbar-right li:nth-child(2n) a')
-        .typeText(Selector('input[type=email]'), 'michael@mherman.org')
-        .typeText(Selector('input[type=password]'), 'test')
-        .click(Selector('input[type=submit]'))
-        .click('.navbar-nav li:nth-child(3n) a')
-        .expect(Selector('.col-md-6 ul li:nth-child(2n)').withText('Email: michael@mherman.org').exists).ok()
-});
