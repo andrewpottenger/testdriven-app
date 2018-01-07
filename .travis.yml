@@ -1,13 +1,13 @@
 language: node_js
 node_js: '8'
 
+before_install:
+  - stty cols 80
+
 dist: trusty
 sudo: required
 
 group: deprecated-2017Q4
-
-before_install:
-  - stty cols 80
 
 addons:
   apt:
@@ -37,7 +37,7 @@ before_script:
   - docker-compose -f docker-compose-dev.yml up --build -d
 
 script:
-  - bash test.sh stage
+  - bash test.sh dev
 
 after_script:
   - docker-compose -f docker-compose-dev.yml down

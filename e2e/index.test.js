@@ -1,5 +1,4 @@
 import { Selector } from 'testcafe';
-import React from 'react';
 
 const TEST_URL = process.env.TEST_URL;
 
