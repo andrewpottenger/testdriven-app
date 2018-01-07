@@ -26,10 +26,10 @@ inspect() {
 }
 
 docker-compose -f $file run client npm install
-docker-compose -f $file run users-service python manage.py test
-inspect $? users
-docker-compose -f $file run users-service flake8 project
-inspect $? users-lint
+#docker-compose -f $file run users-service python manage.py test
+#inspect $? users
+#docker-compose -f $file run users-service flake8 project
+#inspect $? users-lint
 if [[ "${env}" == "dev" ]]; then
     docker-compose -f $file run client npm test -- --coverage
     inspect $? client

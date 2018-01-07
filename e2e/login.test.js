@@ -1,9 +1,8 @@
 import { Selector } from 'testcafe';
 
-//const randomstring = require('randomstring');
+const randomstring = require('randomstring');
 
-//const username = randomstring.generate();
-const username = 'test12345';
+const username = randomstring.generate();
 const email = `${username}@test.com`;
 
 const TEST_URL = process.env.TEST_URL;
@@ -17,7 +16,7 @@ test(`should display the sign in form`, async (t) => {
         .expect(Selector('form').exists).ok()
 });
 
-test(`should allow a user to sign in`, async (t) => {
+test.only(`should allow a user to sign in`, async (t) => {
 
     // register user
     await t
@@ -26,6 +25,7 @@ test(`should allow a user to sign in`, async (t) => {
         .typeText('input[name="email"]', email)
         .typeText('input[name="password"]', 'test')
         .click(Selector('input[type="submit"]'))
+        .wait( 3000 )
 
     // log a user out
     await t
