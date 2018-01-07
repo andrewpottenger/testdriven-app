@@ -17,6 +17,7 @@ test(`should display the sign in form`, async (t) => {
 });
 
 test(`should allow a user to sign in`, async (t) => {
+
     // register user
     await t
         .navigateTo(`${TEST_URL}/register`)

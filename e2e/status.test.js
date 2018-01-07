@@ -22,7 +22,7 @@ test(`should not display user info if a user is not logged in`, async (t) => {
 
 test(`should display user info if a user is logged in`, async (t) => {
     // register user
-        await t
+    await t
         .navigateTo(`${TEST_URL}/register`)
         .typeText('input[name="username"]', username)
         .typeText('input[name="email"]', email)

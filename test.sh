@@ -41,9 +41,9 @@ else
 fi
 
 if [ -n "${fails}" ]; then
-    echo "${RED}Tests failed: ${fails}${NC}"
+    echo "Tests failed: ${fails}"
     exit 1
 else
-    echo "${GREEN}!!! Tests passed !!!${NC}"
+    echo "!!! Tests passed !!!"
     exit 0
 fi
