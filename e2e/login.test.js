@@ -16,7 +16,7 @@ test(`should display the sign in form`, async (t) => {
         .expect(Selector('form').exists).ok()
 });
 
-test.only(`should allow a user to sign in`, async (t) => {
+test(`should allow a user to sign in`, async (t) => {
 
     // register user
     await t
