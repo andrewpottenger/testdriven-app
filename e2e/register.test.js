@@ -1,7 +1,8 @@
 import { Selector } from 'testcafe';
-const randomstring = require('randomstring');
+//const randomstring = require('randomstring');
 
-const username = randomstring.generate();
+//const username = randomstring.generate();
+const username = 'test1234';
 const email = `${username}@test.com`;
 
 const TEST_URL = process.env.TEST_URL;
