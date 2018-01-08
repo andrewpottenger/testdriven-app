@@ -14,3 +14,11 @@ http://DOCKER_MACHINE_PROD_IP/users
 Part 4 TODOS
 1. Try re-factoring 'FormErrors.test.js' into a for loop, like we did with the form component tests.
 2. Validation logic for validateForm() and validateEmail() in our unit tests.
+
+3.
+User does not exist isn't really accurate if the error was due to an incorrect password.
+Login failed is probably a better generic error message. Check your understanding and
+update this on your own.
+4.
+Is there any way to mock the wait time so that the test doesn't actually take an extra four
+seconds to run?
