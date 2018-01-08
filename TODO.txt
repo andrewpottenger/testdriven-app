@@ -10,3 +10,7 @@ Finally, let's update the code on AWS.
 3. Test:
 http://DOCKER_MACHINE_PROD_IP
 http://DOCKER_MACHINE_PROD_IP/users
+
+Part 4 TODOS
+1. Try re-factoring 'FormErrors.test.js' into a for loop, like we did with the form component tests.
+2. Validation logic for validateForm() and validateEmail() in our unit tests.
