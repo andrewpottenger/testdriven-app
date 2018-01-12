@@ -28,7 +28,7 @@ describe('When given a success message', () => {
         button.simulate('click');
         expect(removeMessage).toHaveBeenCalledTimes(1);
     });
-    
+
     test('Message renders a snapshot properly', () => {
         const tree = renderer.create(
             <Message{...messageSuccessProps}/>
