@@ -57,3 +57,15 @@ services:
       - users-service
     links:
       - users-service
+
+  swagger:
+    container_name: swagger
+    build:
+      context: ./services/swagger
+      dockerfile: Dockerfile-prod
+    ports:
+      - '3008:8080'
+    environment:
+      - URL=swagger.json
+    depends_on:
+      - users-service
