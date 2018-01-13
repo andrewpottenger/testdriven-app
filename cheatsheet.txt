@@ -51,3 +51,6 @@ run users-service python manage.py recreate_db
 # seed_db
 docker-compose -f docker-compose-dev.yml \
 run users-service python manage.py seed_db
+
+# You can also create a new repository with the AWS CLI:
+aws ecr create-repository --repository-name REPOSITORY_NAME
