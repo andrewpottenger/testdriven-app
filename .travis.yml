@@ -46,13 +46,13 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - sleep 3
-  - docker-compose -f docker-compose-dev.yml up --build -d
+  - docker-compose -f docker-compose-prod.yml up --build -d
 
 script:
   - bash test.sh stage
 
 after_script:
-  - docker-compose -f docker-compose-dev.yml down
+  - docker-compose -f docker-compose-prod.yml down
 
 after_success:
   - bash ./docker-push.sh
