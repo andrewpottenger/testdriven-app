@@ -10,6 +10,8 @@ update this on your own.
 4. Is there any way to mock the wait time so that the test doesn't actually take an extra four
 seconds to run?
 
+5. Test feature-branch
+
 
 Build, tag, and push Docker image
 Now that your repository exists, you can push a Docker image by following these steps:
